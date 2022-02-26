@@ -12,7 +12,23 @@
 
   <body>
     <header>
-      
+      <div>LOGO</div>
+      <div>
+        <ul>
+        <% if admin_signed_in? %>
+          <li><%= link_to '商品一覧', admin_items_path %></li>
+          <li><%#= link_to '会員一覧', %></li>
+          <li><%#= link_to '注文履歴一覧', %></li>
+          <li><%= link_to 'ジャンル一覧', admin_genres_path %></li>
+          <li><%= link_to 'ログアウト', new_admin_session_path %></li>
+        <% else %>
+          <li><%#= link_to 'About', %></li>
+          <li><%= link_to '商品一覧', admin_items_path %></li>
+          <li><%#= link_to '新規登録', %></li>
+          <li><%= link_to 'ログイン', new_admin_session_path %></li>
+        <% end %>
+        </ul>
+      </div>
     </header>
     <%= yield %>
   </body>
