@@ -1,18 +1,41 @@
-<h1>商品新規登録</h1>
-
-<%= form_with model:[:admin,@item], local:true do |f| %>
-  <h4>商品画像</h4>
-  <%= f.file_field :image, accept:"image/*" %>
-  <h4>商品名</h4>
-  <%= f.text_field :name %>
-  <h4>商品説明</h4>
-  <%= f.text_area :introduction %>
-  <h4>ジャンル</h4>
-  <%= f.collection_select(:genre_id, Genre.all, :id, :name) %>
-  <h4>税抜価格</h4>
-  <p><%= f.text_field :price %>円</p>
-  <h4>販売ステータス</h4>
-  <%= f.radio_button :is_active, :true %>販売中
-  <%= f.radio_button :is_active, :false %>販売停止中
-  <%= f.submit '新規登録' %>
+<% if @item.errors.any? %>
+  <%= @item.errors.count %>errors prohibited this obj from being saved:
+  <ul>
+    <% @item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>
+<h3 class="m-5">商品新規登録</h3>
+<div class="mx-auto" style="width: 700px;">
+  <%= form_with model:[:admin,@item], local:true do |f| %>
+    <div class="my-4">
+      <span class="mx-5"><%= f.label :image, "商品画像" %></span>
+      <%= f.file_field :image, accept:"image/*" %>
+    </div>
+    <div class="my-4">
+      <span class="mx-5"><%= f.label :name, "商品名　" %></span>
+      <%= f.text_field :name, size:47 %>
+    </div>
+    <div class="my-4">
+      <span class="mx-5"><%= f.label :introduction, "商品説明" %></span>
+      <%= f.text_area :introduction, size:'50*50' %>
+    </div>
+    <div class="my-4">
+      <span class="mx-5"><%= f.label :genre_id, "ジャンル" %></span>
+      <%= f.collection_select(:genre_id, Genre.all, :id, :name) %>
+    </div>
+    <div class="my-4">
+      <span class="mx-5"><%= f.label :price, "税抜価格" %></span>
+      <%= f.text_field :price, size:47 %>円
+    </div>
+    <div class="my-4">
+      <span class="mx-5"><%= f.label :price, "税抜価格" %></span>
+      <span class="mx-5"><%= f.radio_button :is_active, :true %>販売中</span>
+      <span class="mx-5"><%= f.radio_button :is_active, :false %>販売停止中</span>
+    </div>
+    <div class="mx-5">
+      <%= f.submit "新規登録", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
