@@ -1,23 +1,43 @@
-<h1><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h1>
-<%= form_with model:[:admin, @customer], local:true do |f| %>
-  <h4>会員ID</h4>
-  <%= @customer.id %>
-  <h4>氏名</h4>
-  <%= f.text_field :last_name %>
-  <%= f.text_field :first_name %>
-  <h4>フリガナ</h4>
-  <%= f.text_field :last_name_kana %>
-  <%= f.text_field :first_name_kana %>
-  <h4>郵便番号</h4>
-  <%= f.text_field :postal_code %>
-  <h4>住所</h4>
-  <%= f.text_field :address, size:50 %>
-  <h4>電話番号</h4>
-  <%= f.text_field :telephone_number %>
-  <h4>メールアドレス</h4>
-  <%= f.text_field :email %>
-  <h4>会員ステータス</h4>
-  <%= f.radio_button :is_active, :true %>有効
-  <%= f.radio_button :is_active, :false %>退会
-  <%= f.submit "変更を保存" %>
-<% end %>
+<h3 class="m-5"><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h3>
+<div class="mx-5">
+  <%= form_with model:[:admin, @customer], local:true do |f| %>
+    <div class="my-4">
+      <span class="mx-5">会員ID</span>
+      <%= @customer.id %>
+    </div>
+    <div class="my-4">
+      <span class="mx-5">氏名</span>
+      <%= f.text_field :last_name %>
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="my-4">
+      <span class="mx-5">フリガナ</span>
+      <%= f.text_field :last_name_kana %>
+      <%= f.text_field :first_name_kana %>
+    </div>
+    <div class="my-4">
+      <span class="mx-5">郵便番号</span>
+      <%= f.text_field :postal_code %>
+    </div>
+    <div class="my-4">
+      <span class="mx-5">住所</span>
+      <%= f.text_field :address, size:50 %>
+    </div>
+    <div class="my-4">
+      <span class="mx-5">電話番号</span>
+      <%= f.text_field :telephone_number %>
+    </div>
+    <div class="my-4">
+      <span class="mx-5">メールアドレス</span>
+      <%= f.text_field :email %>
+    </div>
+    <div class="my-4">
+      <span class="mx-5">会員ステータス</span>
+      <%= f.radio_button :is_active, :true %>有効
+      <%= f.radio_button :is_active, :false %>退会
+    </div>
+    <div class="mx-5">
+      <%= f.submit "変更を保存", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
