@@ -1,15 +1,28 @@
-<h1>ジャンル一覧・追加</h1>
-
-<%= form_with model:[:admin,@genre], local:true do |f| %>
-  <h4>ジャンル名</h4>
-  <%= f.text_field :name %>
-  <%= f.submit '新規登録' %>
-<% end %>
-
-<p>ジャンル</p>
-<% @genres.each do |genre| %>
-  <div>
-    <%= genre.name %>
-    <%= link_to '編集する', edit_admin_genre_path(genre.id) %>
-  </div>
-<% end %>
+<h3 class="m-5">ジャンル一覧・追加</h3>
+<div class="mx-auto" style="width: 700px;">
+  <%= form_with model:[:admin,@genre], local:true do |f| %>
+    <div class="my-4">
+      <span class="mx-3"><%= f.label :name, "ジャンル名" %></span>
+      <%= f.text_field :name, size:50 %>
+      <span class="mx-3"><%= f.submit '新規登録', class: 'btn btn-primary' %></span>
+    </div>
+  <% end %>
+</div>
+<div class="mx-5" style="width: 500px;">
+  <table class="table table-hover table-inverse">
+    <thead>
+      <tr>
+        <th>ジャンル</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% @genres.each do |genre| %>
+    <tbody>
+      <tr>
+        <td><%= genre.name %></td>
+        <td><%= link_to '編集する', edit_admin_genre_path(genre.id), class: 'btn btn-primary' %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>
