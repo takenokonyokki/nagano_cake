@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root to: 'public/homes#top'
-  get 'public/homes/about', as:'about'
 
   namespace :admin do
     get 'homes/top'
@@ -8,6 +7,11 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show, :update]
+  end
+
+  namespace :public do
+    get 'homes/about', as:'about'
+    resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdraw]
   end
 
   devise_for :customers,skip: [:passwords], controllers: {
