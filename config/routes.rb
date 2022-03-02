@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
   namespace :public do
     get 'homes/about', as:'about'
-    resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdraw]
+    resources :customers, only: [:show, :edit, :update]
+    get 'customers/:id/unsubscribe' => 'customers#unsubscribe', as:'unsubscribe'
+    patch 'customers/:id/withdraw' => 'customers#withdraw', as:'withdraw'
   end
 
   devise_for :customers,skip: [:passwords], controllers: {
