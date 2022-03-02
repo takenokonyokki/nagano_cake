@@ -1,0 +1,41 @@
+<h3 class="m-5">配送先登録/一覧</h3>
+<div class="mx-5">
+  <%= form_with model:[:public, @addresse], local:true do |f| %>
+    <div class="my-4">
+      <span class="mx-5"><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></span>
+      <%= f.text_field :postal_code, size:50 %>
+    </div>
+    <div class="my-4">
+      <span class="mx-5"><%= f.label :address, "住所" %></span>
+      <%= f.text_field :address, size:70 %>
+    </div>
+    <div class="my-4">
+      <span class="mx-5"><%= f.label :name, "氏名" %></span>
+      <%= f.text_field :name, size:50 %>
+    </div>
+    <div class="mx-5">
+      <%= f.submit "新規登録", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>宛名</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <% @addresses.each do |addresse| %>
+      <tbody>
+        <tr>
+          <td><%= addresse.postal_code %></td>
+          <td><%= addresse.address %></td>
+          <td><%= addresse.name %></td>
+          <td><%#= link_to "編集する" edit_public_address_path(@addresse.id), class: 'btn btn-primary' %></td>
+          <td><%#= link_to "削除する" public_address_path(@addresse.id), method: :delete, class: 'btn btn-primary' %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+</div>

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:show, :edit, :update]
     get 'customers/:id/unsubscribe' => 'customers#unsubscribe', as:'unsubscribe'
     patch 'customers/:id/withdraw' => 'customers#withdraw', as:'withdraw'
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
 
   devise_for :customers,skip: [:passwords], controllers: {
