@@ -1,8 +1,7 @@
 class Public::HomesController < ApplicationController
   def top
     @genres = Genre.all
-    @items = Item.all
-    @items_latest3 = @items.first(3)
+    @items = Item.page(params[:page])
   end
 
   def about

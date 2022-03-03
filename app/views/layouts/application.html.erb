@@ -25,7 +25,7 @@
               <li class="nav-item m-1 rounded border border-primary"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %></li>
             <% elsif customer_signed_in? %>
               <li class="nav-item m-1 rounded border border-primary"><%= link_to 'マイページ', public_customer_path(current_customer), class: 'nav-link text-dark' %></li>
-              <li class="nav-item m-1 rounded border border-primary">public側の商品一覧</li>
+              <li class="nav-item m-1 rounded border border-primary"><%= link_to '商品一覧', public_items_path, class: 'nav-link text-dark' %></li>
               <li class="nav-item m-1 rounded border border-primary">カート</li>
               <li class="nav-item m-1 rounded border border-primary"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %></li>
             <% else %>
