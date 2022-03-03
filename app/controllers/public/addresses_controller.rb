@@ -10,6 +10,7 @@ class Public::AddressesController < ApplicationController
 
   def create
     @addresse = Addresse.new(addresse_params)
+    @addresse.customer_id = current_customer.id
     if @addresse.save
       redirect_to public_addresses_path(@addresse.id)
     else
@@ -20,7 +21,7 @@ class Public::AddressesController < ApplicationController
 
   def update
     @addresse = Addresse.find(params[:id])
-    if @addresse.update
+    if @addresse.update(addresse_params)
       redirect_to  public_addresses_path(@addresse.id)
     else
       render :edit
@@ -35,7 +36,7 @@ class Public::AddressesController < ApplicationController
 
   private
   def addresse_params
-    params.require(:addresse).permit(:customer_id, :name, :postal_code, :address)
+    params.require(:addresse).permit(:name, :postal_code, :address)
   end
 
 end

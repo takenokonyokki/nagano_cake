@@ -1,2 +1,17 @@
-<h1>Public::Addresses#edit</h1>
-<p>Find me in app/views/public/addresses/edit.html.erb</p>
+<h3 class="m-5">配送先編集</h3>
+<div class="mx-5">
+  <%= form_with model:[:public,@addresse], local:true do |f| %>
+  <div class="my-4">
+    <span class="mx-5"><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></span>
+    <%= f.text_field :postal_code, size:50 %>
+  </div>
+  <div class="my-4">
+    <span class="mx-5"><%= f.label :address, "住所" %></span>
+    <%= f.text_field :address, size:70 %>
+  </div>
+  <div class="my-4">
+    <span class="mx-5"><%= f.label :name, "宛名" %></span>
+    <%= f.text_field :name, size:50 %>
+    <%= f.submit "変更内容を保存", class: 'btn btn-primary' %>
+  </div>
+  <% end %>
