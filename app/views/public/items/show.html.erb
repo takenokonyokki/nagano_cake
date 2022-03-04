@@ -1,2 +1,36 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="my-4">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>ジャンル検索</th>
+              </tr>
+            </thead>
+            <% @genres.each do |genre| %>
+            <tbody>
+              <tr>
+                <!--link_toで名前の遷移先を後で設定する-->
+                <td><%= genre.name %></td>
+              </tr>
+            </tbody>
+            <% end %>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <%= image_tag @item.get_image(200,200) %>
+    </div>
+    <div class="col-md-4">
+      <h4 class="mx-5">商品説明</h4>
+      <%= @item.introduction %>
+      <div class="mx-5">￥<%= @item.add_tax_price.to_s(:delimited) %>(税込)</div>
+      <div>
+        <%= form_with model:[:public,@cart_item], local:true do |f| %>
+          <%= f.hidden_field :item_id, value: @cart_item.amount %>
+          <%= f.select :amount, *[1..10] %>
+          <%= f.submit "カートに入れる" %>
+        <% end %>
+      </div>
+    </div>
