@@ -23,8 +23,8 @@
       <%= image_tag @item.get_image(200,200) %>
     </div>
     <div class="col-md-4">
-      <h4 class="mx-5">商品説明</h4>
-      <%= @item.introduction %>
+      <div><%= @item.name %></div>
+      <div><%= @item.introduction %></div>
       <div class="mx-5">￥<%= @item.add_tax_price.to_s(:delimited) %>(税込)</div>
       <div>
         <%= form_with model:[:public,@cart_item], local:true do |f| %>

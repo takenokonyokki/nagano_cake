@@ -25,9 +25,11 @@
         <div class="row">
           <% @items.each do |item| %>
             <div class="col-md-3">
-              <div class="m-3"><%= image_tag item.get_image(100,100) %></div>
-              <div class="m-3"><%= item.name %></div>
-              <div class="m-3">￥<%= item.price %></div>
+              <%= link_to public_item_path(item.id) do %>
+                <div class="m-3"><%= image_tag item.get_image(100,100) %></div>
+                <div class="m-3"><%= item.name %></div>
+                <div class="m-3">￥<%= item.price %></div>
+              <% end %>
             </div>
           <% end %>
         </div>
