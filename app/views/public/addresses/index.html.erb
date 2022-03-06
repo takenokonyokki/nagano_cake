@@ -1,14 +1,14 @@
-<% if @addresse.errors.any? %>
-  <%= @addresse.errors.count %>errors prohibited this obj from being saved:
+<% if @address.errors.any? %>
+  <%= @address.errors.count %>errors prohibited this obj from being saved:
   <ul>
-    <% @addresse.errors.full_messages.each do |message| %>
+    <% @address.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>
 <% end %>
 <h3 class="m-5">配送先登録/一覧</h3>
 <div class="mx-5">
-  <%= form_with model:[:public, @addresse], local:true do |f| %>
+  <%= form_with model:[:public, @address], local:true do |f| %>
     <div class="my-4">
       <span class="mx-5"><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></span>
       <%= f.text_field :postal_code, size:50 %>
@@ -32,15 +32,15 @@
         <th></th>
       </tr>
     </thead>
-    <% @addresses.each do |addresse| %>
+    <% @addresses.each do |address| %>
       <tbody>
         <tr>
-          <td><%= addresse.postal_code %></td>
-          <td><%= addresse.address %></td>
-          <td><%= addresse.name %></td>
+          <td><%= address.postal_code %></td>
+          <td><%= address.address %></td>
+          <td><%= address.name %></td>
           <td>
-            <%= link_to "編集する", edit_public_address_path(addresse.id), class: 'btn btn-primary' %>
-            <%= link_to "削除する", public_address_path(addresse.id), method: :delete, class: 'btn btn-primary' %>
+            <%= link_to "編集する", edit_public_address_path(address.id), class: 'btn btn-primary' %>
+            <%= link_to "削除する", public_address_path(address.id), method: :delete, class: 'btn btn-primary' %>
           </td>
         </tr>
       </tbody>

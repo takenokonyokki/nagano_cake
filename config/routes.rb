@@ -21,6 +21,12 @@ Rails.application.routes.draw do
         delete '', to: 'cart_items#destroy_all', as:''
       end
     end
+    resources :orders, only: [:new, :create, :index, :show] do
+      collection do
+        post :confirm, as:'confirm'
+        get :complete, as:'complete'
+      end
+    end
   end
 
   devise_for :customers,skip: [:passwords], controllers: {

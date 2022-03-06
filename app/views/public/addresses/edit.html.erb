@@ -1,6 +1,6 @@
 <h3 class="m-5">配送先編集</h3>
 <div class="mx-5">
-  <%= form_with model:[:public,@addresse], local:true do |f| %>
+  <%= form_with model:[:public,@address], local:true do |f| %>
   <div class="my-4">
     <span class="mx-5"><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></span>
     <%= f.text_field :postal_code, size:50 %>

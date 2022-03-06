@@ -18,7 +18,7 @@ class Public::CartItemsController < ApplicationController
     @cart_item.save
     redirect_to public_cart_items_path(@cart_item.id)
   end
-
+  
   def update
     @cart_item = CartItem.find(params[:id])
     @cart_item.update(cart_item_params)
