@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :update, :create, :destroy] do
       collection do
-        delete '', to: 'cart_items#destroy_all', as:''
+        delete '', to: 'cart_items#destroy_all', as:'destroy_all'
       end
     end
     resources :orders, only: [:new, :create, :index, :show] do

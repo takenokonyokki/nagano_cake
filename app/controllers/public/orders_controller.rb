@@ -1,4 +1,7 @@
 class Public::OrdersController < ApplicationController
+
+  before_action :cart_item_state, only: [:new]
+
   def new
     @order = Order.new
   end
@@ -7,6 +10,16 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
+    @cart_items = current_customer.cart_items
+      @cart_items.each do |cart_item|
+        order_details = OrderDetail.new
+        order_details.item_id = cart_item.item_id
+        order_details.order_id = @order.id
+        order_details.price = cart_item.item.price
+        order_details.amount = cart_item.amount
+        order_details.save
+      end
+    @cart_items.destroy_all
     redirect_to complete_public_orders_path
   end
 
@@ -29,6 +42,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders
   end
 
   def show
@@ -37,6 +51,15 @@ class Public::OrdersController < ApplicationController
   private
   def order_params
     params.require(:order).permit(:postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
+  end
+
+  protected
+  def cart_item_state
+    @cart_items = current_customer.cart_items
+      if @cart_items.any?
+      else
+        redirect_to public_items_path
+      end
   end
 
 end
