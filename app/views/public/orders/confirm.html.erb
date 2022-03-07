@@ -29,6 +29,7 @@
       </div>
       <div>
       <%= form_with model:[:public,@order], url: public_orders_path, method: :post, local:true do |f| %>
+        <%= f.hidden_field :shipping_cost, value:@order.shipping_cost %>
         <%= f.hidden_field :total_payment, value:@cart_items.sum(&:subtotal) + @order.shipping_cost %>
         <h4>支払方法</h4>
         <%= f.hidden_field :payment_method, value:@order.payment_method %>
