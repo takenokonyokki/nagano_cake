@@ -7,7 +7,7 @@
         <tbody>
           <tr>
             <td>注文日</td>
-            <td><%= @order.created_at %></td>
+            <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
           </tr>
           <tr>
             <td>配送先</td>
@@ -34,15 +34,15 @@
         <tbody>
           <tr>
             <td>商品合計</td>
-            <td><%= @order.total_payment - @order.shipping_cost %></td>
+            <td><%= (@order.total_payment - @order.shipping_cost).to_s(:delimited) %></td>
           </tr>
           <tr>
             <td>配送料</td>
-            <td><%= @order.shipping_cost %></td>
+            <td><%= @order.shipping_cost.to_s(:delimited) %></td>
           </tr>
           <tr>
             <td>ご請求金額</td>
-            <td><%= @order.total_payment %></td>
+            <td><%= @order.total_payment.to_s(:delimited) %></td>
           </tr>
         </tbody>
       </table>
@@ -64,7 +64,7 @@
             <td><%= order_detail.item.name %></td>
             <td><%= order_detail.item.add_tax_price.to_s(:delimited) %></td>
             <td><%= order_detail.amount %></td>
-            <td><%= order_detail.item.add_tax_price.to_s(:delimited) * order_detail.amount %></td>
+            <td><%= order_detail.subtotal.to_s(:delimited) %></td>
           </tr>
         </tbody>
         <% end %>

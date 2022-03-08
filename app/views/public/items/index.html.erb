@@ -11,8 +11,10 @@
             <% @genres.each do |genre| %>
             <tbody>
               <tr>
-                <!--link_toで名前の遷移先を後で設定する-->
-                <td><%= genre.name %></td>
+                <td>
+                  <!--余力があればジャンル検索を実装-->
+                  <%= genre.name %>
+                  </td>
               </tr>
             </tbody>
             <% end %>
