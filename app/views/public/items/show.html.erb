@@ -19,14 +19,14 @@
         </table>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3 m-5">
       <%= image_tag @item.get_image(200,200) %>
     </div>
-    <div class="col-md-4">
-      <div><%= @item.name %></div>
-      <div><%= @item.introduction %></div>
+    <div class="col-md-3 m-5">
+      <div class="m-3"><%= @item.name %></div>
+      <div class="m-3"><%= @item.introduction %></div>
       <div class="mx-5">￥<%= @item.add_tax_price.to_s(:delimited) %>(税込)</div>
-      <div>
+      <div class="m-3">
         <%= form_with model:[:public,@cart_item], local:true do |f| %>
           <%= f.hidden_field :item_id, value: @item.id %>
           <%= f.select :amount, *[1..10] %>
