@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2022_03_02_094314) do
     t.string "telephone_number", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "is_active", default: false
+    t.boolean "is_active", default: true
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
