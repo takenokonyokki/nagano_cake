@@ -26,7 +26,7 @@
           </tr>
           <tr>
             <td>注文ステータス</td>
-            <%= form_with model:@order, url:admin_order_path(@order.id), method: :patch, local:true do |f| %>
+            <%= form_with model:[:admin,@order], url:admin_order_path(@order.id), method: :patch, local:true do |f| %>
             <td>
               <%= f.select :status, Order.statuses_i18n.invert %>
               <%= f.submit "更新" %>
