@@ -21,9 +21,11 @@ Rails.application.routes.draw do
 
   namespace :public do
     get 'homes/about', as:'about'
-    resources :customers, only: [:show, :edit, :update]
-    get 'customers/:id/unsubscribe' => 'customers#unsubscribe', as:'unsubscribe'
-    patch 'customers/:id/withdraw' => 'customers#withdraw', as:'withdraw'
+    get 'customers/my_page' => 'customers#show', as:'customer'
+    get 'customers/edit' => 'customers#edit', as:'edit_customer'
+    patch 'customers' => 'customers#update', as:'update_customer'
+    get 'customers/unsubscribe' => 'customers#unsubscribe', as:'unsubscribe'
+    patch 'customers/withdraw' => 'customers#withdraw', as:'withdraw'
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :update, :create, :destroy] do
